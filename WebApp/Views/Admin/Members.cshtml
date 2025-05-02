@@ -1,7 +1,12 @@
 ﻿@{
-	ViewData["Title"] = "Team Members";
+    ViewData["Title"] = "Team Members";
 }
 
-<h2>
-	@ViewData["Title"]
-</h2>
+<partial name="Partials/Sections/_addMemberForm" />
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>@ViewData["Title"]</h2>
+    <button class="btn btn-blue btn-pad btn-size" data-modal="true" data-target="#addMemberModal">
+        <i class="fa-solid fa-plus"></i> Add Member
+    </button>
+</div>

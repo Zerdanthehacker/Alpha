@@ -1,0 +1,54 @@
+﻿@model AddMemberForm
+
+<div id="addMemberModal" class="modal">
+    <div class="modal-overlay" data-close="true"></div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Team Member</h3>
+            <i class="fa-solid fa-xmark" data-close="true"></i>
+        </div>
+
+        <form method="post" asp-action="Add" asp-controller="Members" enctype="multipart/form-data">
+
+            <div class="image-previewer circle selected" onclick="this.querySelector('input').click()">
+                <img src="" class="image-preview" />
+                <input type="file" asp-for="MemberImage" accept="image/*" style="display: none;" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MemberName">Member Name</label>
+                <div class="field-group">
+                    <input asp-for="MemberName" class="form-control" />
+                    <span asp-validation-for="MemberName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <div class="field-group">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location">Location</label>
+                <div class="field-group">
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone">Phone</label>
+                <div class="field-group">
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit btn-blue">Create</button>
+        </form>
+    </div>
+</div>
