@@ -1,10 +1,46 @@
 ﻿@{
-    Layout = "_CleanLayout";
-    ViewData["Title"] = "Login";
+    Layout = null;
 }
 
-<div class="center-screen">
-    <div class="surface">
-        @ViewData["Title"]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="form-container">
+        <form asp-action="Login" asp-controller="Auth" method="post" class="create-account-form">
+            <div class="form-inner">
+                <h2>Login</h2>
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Your email address" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+                <label class="checkbox-container">
+                    <input type="checkbox">
+                    Remember me
+                </label>
+
+                <button type="submit" class="create-btn">Login</button>
+
+                <p class="login-text">
+                    Don't have an account? <a href="/Auth/Register" class="login-link">Sign Up</a>
+                </p>
+
+
+
+                @if (ViewBag.LoginError != null)
+                {
+                    <p style="color:red; margin-top:20px;">@ViewBag.LoginError</p>
+                }
+            </div>
+        </form>
     </div>
-</div>
+</body>
+</html>

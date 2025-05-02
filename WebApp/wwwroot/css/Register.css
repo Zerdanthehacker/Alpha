@@ -1,0 +1,138 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+}
+
+
+
+.form-container {
+    width: 700px;
+    height: 1000px;
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: scale(0.5); /* liten hel ruta */
+    transform-origin: center;
+    overflow: hidden;
+}
+
+.form-inner {
+    transform: scale(1.5); /* skalar upp innehållet lite */
+    transform-origin: top center; /* så det håller sig snyggt */
+    margin-top: 70px;
+    width: 50%;
+    margin: 100px;
+}
+
+
+
+
+.create-account-form {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+    .create-account-form h2 {
+        text-align: center;
+        font-size: 20px;
+        margin-bottom: 25px;
+        position: relative;
+        top: 0;
+    }
+
+    .create-account-form label {
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 20px;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .create-account-form input[type="text"],
+    .create-account-form input[type="email"],
+    .create-account-form input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 13px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+
+.checkbox-container {
+    font-size: 12px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+
+    .checkbox-container input {
+        margin-right: 10px;
+    }
+
+    .checkbox-container a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
+
+
+.create-btn {
+    width: 100%;
+    background-color: #2D99FF;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+    .create-btn:hover {
+        background-color: #0056b3;
+    }
+
+.login-text {
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+    padding-top: 100px;
+}
+
+input[type="checkbox"] {
+    accent-color: #007bff; /* Blå färg när den är ikryssad */
+}
+
+
+.login-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    .login-link:hover {
+        text-decoration: underline;
+    }

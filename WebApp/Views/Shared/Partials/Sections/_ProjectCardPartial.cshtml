@@ -1,0 +1,21 @@
+﻿@model Business.Models.AddProjectCard
+
+<div class="card" data-status="@Model.Status">
+    <div class="card-header">
+        <img src="~/images/ProjectImage.svg" alt="App Icon" class="icon" />
+        <div class="text-content">
+            <div class="title">@Model.ProjectName</div>
+            <div class="subtitle">@Model.ClientName</div>
+        </div>
+        <div class="menu-container">
+            <div class="menu">⋯</div>
+            <div class="dropdown hidden">
+                <button class="dropdown-btn edit-btn">✏️ Edit</button>
+                <button class="dropdown-btn delete-btn">🗑️ Delete Project</button>
+            </div>
+        </div>
+    </div>
+    <p class="description">
+        @Html.Raw(Model.Description ?? string.Empty)
+    </p>
+</div>

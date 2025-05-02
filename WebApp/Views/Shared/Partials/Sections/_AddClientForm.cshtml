@@ -1,0 +1,54 @@
+﻿@model AddClientForm
+
+<div id="addClientModal" class="modal">
+    <div class="modal-overlay" data-close="true"></div>
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Client</h3>
+            <i class="fa-solid fa-xmark" data-close="true"></i>
+        </div>
+
+        <form method="post" asp-action="AddClient" asp-controller="Clients" enctype="multipart/form-data">
+
+            <div class="image-previewer circle selected" onclick="this.querySelector('input').click()">
+                <img src="" class="image-preview" />
+                <input type="file" asp-for="ClientImage" accept="image/*" style="display: none;" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ClientName">Client Name</label>
+                <div class="field-group">
+                    <input asp-for="ClientName" />
+                    <span asp-validation-for="ClientName"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <div class="field-group">
+                    <input asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Location">Location</label>
+                <div class="field-group">
+                    <input asp-for="Location" />
+                    <span asp-validation-for="Location"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone">Phone</label>
+                <div class="field-group">
+                    <input asp-for="Phone" />
+                    <span asp-validation-for="Phone"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit btn-blue">Create</button>
+        </form>
+    </div>
+</div>

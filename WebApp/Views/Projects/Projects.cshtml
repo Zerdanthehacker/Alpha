@@ -1,7 +1,68 @@
-﻿@{
-	ViewData["Title"] = "Projects";
+﻿@model List<Business.Models.AddProjectCard>
+
+@{
+    ViewData["Title"] = "Projects";
 }
 
-<h2>
-	@ViewData["Title"] 
-</h2>
+<!-- NAVBAR med profilbild och kugghjul -->
+<div class="navbar">
+    <div class="profile-container">
+        <div class="profile-items">
+            <i class="fa-solid fa-gear settings-icon"></i>
+            <img src="~/images/pfp.svg" alt="Profile" class="profile-pic" onclick="toggleProfileMenu()" />
+        </div>
+
+        <div class="profile-menu hidden">
+            <div class="profile-user">
+                <img src="~/images/pfp.svg" alt="Profile" class="profile-menu-pic" />
+                <span class="profile-name">Tommy Mattin-Lassei</span>
+            </div>
+            <a href="/Auth/Logout" class="profile-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- PROJECTS header och Add-knapp -->
+<div class="d-flex justify-content-between align-items-center mb-4" style="margin-top: 20px;">
+    <h2>@ViewData["Title"]</h2>
+    <button class="btn btn-blue btn-pad btn-size" onclick="document.getElementById('addProjectModal').style.display='block'">
+        <i class="fa-solid fa-plus"></i> Add Project
+    </button>
+</div>
+
+<!-- Navigation -->
+<div class="project-nav">
+    <button class="nav-link active" onclick="setActive(this)">ALL [0]</button>
+    <button class="nav-link" onclick="setActive(this)">STARTED [0]</button>
+    <button class="nav-link" onclick="setActive(this)">COMPLETED [0]</button>
+</div>
+
+<!-- Project Grid -->
+<div class="project-grid">
+    @foreach (var project in Model)
+    {
+        @await Html.PartialAsync("Partials/Sections/_ProjectCardPartial", project)
+    }
+</div>
+
+<!-- Add Project Modal -->
+<partial name="Partials/Sections/_AddProject" model="new Business.Models.AddProjectForm()" />
+
+<!-- Edit Project Modal -->
+<partial name="Partials/Sections/_EditProject" model="new Business.Models.AddProjectForm()" />
+
+<!-- Visa modalen om ModelState.IsValid är false -->
+@if (ViewBag.ShowAddModal == true)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("addProjectModal").style.display = "block";
+        });
+    </script>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
