@@ -6,15 +6,14 @@ namespace WebApp.Controllers
     [Route("projects")]
     public class ProjectsController : Controller
     {
-        // Tillfällig lista som låtsas vara en databas
+        // Simulerad databas
         public static List<AddProjectCard> ProjectsList = new List<AddProjectCard>
         {
             new AddProjectCard { ProjectName = "Project 1", ClientName = "Client A", Description = "Description 1", Status = "started" },
             new AddProjectCard { ProjectName = "Project 2", ClientName = "Client B", Description = "Description 2", Status = "completed" }
         };
 
-        [HttpGet]
-        [Route("")]
+        [HttpGet("")]
         public IActionResult Projects()
         {
             if (HttpContext.Session.GetString("UserLoggedIn") != "true")
@@ -25,32 +24,61 @@ namespace WebApp.Controllers
             return View(ProjectsList);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("add")]
-        public IActionResult AddProject(AddProjectForm model)
+        [HttpPost("add")]
+        public IActionResult AddProject(AddProjectForm form)
         {
             if (!ModelState.IsValid)
             {
-                // Visa modalen igen
-                ViewBag.ShowAddModal = true;
+                var errors = ModelState
+                    .Where(x => x.Value?.Errors.Count > 0)
+                    .ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value?.Errors.Select(e => e.ErrorMessage).ToList()
+                    );
 
-                // Skicka befintliga projekt så att sidan återanvänds korrekt
-                return View("Projects", ProjectsList);
+                return BadRequest(new { success = false, errors });
             }
 
-            // Om allt är giltigt, lägg till nytt projekt
             var newProject = new AddProjectCard
             {
-                ProjectName = model.ProjectName,
-                ClientName = model.ClientName,
-                Description = model.Description,
+                ProjectName = form.ProjectName,
+                ClientName = form.ClientName,
+                Description = form.Description,
                 Status = "started"
             };
 
             ProjectsList.Add(newProject);
 
-            return RedirectToAction("Projects");
+            return Ok(new { success = true });
         }
+
+        [HttpPost("edit")]
+        public IActionResult EditProject(AddProjectForm form)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState
+                    .Where(x => x.Value?.Errors.Count > 0)
+                    .ToDictionary(
+                        kvp => kvp.Key,
+                        kvp => kvp.Value?.Errors.Select(e => e.ErrorMessage).ToList()
+                    );
+
+                return BadRequest(new { success = false, errors });
+            }
+
+            // Hitta rätt projekt i listan (matcha på namn)
+            var project = ProjectsList.FirstOrDefault(p => p.ProjectName == form.ProjectName);
+            if (project != null)
+            {
+                project.ClientName = form.ClientName;
+                project.Description = form.Description;
+                // Lägg till fler fält om du vill
+            }
+
+            return Ok(new { success = true });
+        }
+
+
     }
 }
