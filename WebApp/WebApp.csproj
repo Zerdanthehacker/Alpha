@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,10 +18,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="SolrNet.Core" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
