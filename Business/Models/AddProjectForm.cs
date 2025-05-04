@@ -4,29 +4,34 @@ namespace Business.Models
 {
     public class AddProjectForm
     {
-        [Display(Name = "Project Name")]
-        [Required(ErrorMessage = "Project name is required")]
+        [Display(Name = "Project Name", Prompt = "Enter project name")]
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Required")]
         public string ProjectName { get; set; } = null!;
 
-        [Display(Name = "Client Name")]
-        [Required(ErrorMessage = "Client name is required")]
+        [Display(Name = "Client Name", Prompt = "Enter client name")]
+        [DataType(DataType.Text)]
+        [Required(ErrorMessage = "Required")]
         public string ClientName { get; set; } = null!;
 
-        [Display(Name = "Description")]
-        public string? Description { get; set; }
+        [Display(Name = "Description", Prompt = "Enter description")]
+        [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "Required")]
+        public string Description { get; set; } = null!;
 
-        [Display(Name = "Start Date")]
+        [Display(Name = "Start Date", Prompt = "Select start date")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Start date is required")]
+        [Required(ErrorMessage = "Required")]
         public DateTime StartDate { get; set; }
 
-        [Display(Name = "End Date")]
+        [Display(Name = "End Date", Prompt = "Select end date")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "End date is required")]
+        [Required(ErrorMessage = "Required")]
         public DateTime EndDate { get; set; }
 
-        [Display(Name = "Budget")]
-        [Range(0, double.MaxValue, ErrorMessage = "Budget must be 0 or more")]
+        [Display(Name = "Budget", Prompt = "Enter budget")]
+        [DataType(DataType.Currency)]
+        [Range(0, double.MaxValue, ErrorMessage = "Must be 0 or more")]
         public decimal Budget { get; set; }
     }
 }
